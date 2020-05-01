@@ -8,12 +8,17 @@ namespace MyprojecsApp
         static void Main(string[] args)
         {
 
+            for (int i = 0; i <30; i++)
+            {
+            Matrix instance = new Matrix(i * 3, true);
+                new Thread(instance.Move).Start();
+            }
         }
     }
     class Matrix
     {
         Random rand;
-        private object locker;
+        static object locker =new object();
         const string litters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         public int Colunm { get; set; }
@@ -52,6 +57,10 @@ namespace MyprojecsApp
                             Console.CursorLeft = Colunm;
                             Console.WriteLine(" ");
                         }
+                        if (lenght < count)
+                            lenght++;
+                        else if (lenght == count)
+                            count = 0;
                         if (NeedSecond && i < 20 && i > lenght + 2 && (rand.Next(1, 5) == 3))
                         {
                             new Thread((new Matrix(Colunm, false)).Move).Start();
@@ -80,7 +89,7 @@ namespace MyprojecsApp
                             Console.WriteLine(GetChar());
                         }
 
-                        Thread.Sleep(50);
+                        Thread.Sleep(5);
                     }
                 }
             }
