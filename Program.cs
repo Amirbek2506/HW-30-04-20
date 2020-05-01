@@ -7,10 +7,10 @@ namespace MyprojecsApp
     {
         static void Main(string[] args)
         {
-
-            for (int i = 0; i <30; i++)
+            Console.SetWindowSize(170, 42);
+            for (int i = 0; i < 55; i++)
             {
-            Matrix instance = new Matrix(i * 3, true);
+                Matrix instance = new Matrix(i * 3, true);
                 new Thread(instance.Move).Start();
             }
         }
@@ -18,7 +18,7 @@ namespace MyprojecsApp
     class Matrix
     {
         Random rand;
-        static object locker =new object();
+        static object locker = new object();
         const string litters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
         public int Colunm { get; set; }
